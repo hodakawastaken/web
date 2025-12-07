@@ -1,14 +1,26 @@
-// Smooth Scroll
+// Function 1: Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        
+        const targetId = this.getAttribute('href');
+
+        if (targetId === '#top') {
+            // Logic to scroll smoothly to the absolute top of the page (0, 0)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Existing logic: Scroll smoothly to a specific section ID
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// Typing Effect for the Terminal
+// Function 2: Typing Effect for the Terminal
 const textElement = document.getElementById('typing-text');
 const phrases = [
     // Original Phrases
@@ -53,7 +65,7 @@ const phrases = [
     // Additional Student/Mood Phrases
     "Physics class feels like a DDoS attack.",
     "Mentally checking out of history.",
-    "Trying to look busy during study hall.",
+    "Trying to merge the curriculum branches. Conflict detected.",
     "School system offline.",
     "Mood set to: grayscale.",
     "Just a little tired, it's fine.",
@@ -168,29 +180,22 @@ function typeEffect() {
 document.addEventListener('DOMContentLoaded', typeEffect);
 
 
-// Function to ensure all external links open in a new tab
+// Function 3: Ensure all external links open in a new tab
 function setExternalLinksTarget() {
-    // Get the current domain to compare against
     const currentDomain = window.location.hostname;
 
-    // Select all anchor tags
     document.querySelectorAll('a').forEach(link => {
         const href = link.getAttribute('href');
 
-        // Check if the link has an 'href' and is not an internal fragment link ('#about')
         if (href && !href.startsWith('#')) {
             try {
-                // Create a temporary URL object to easily parse the domain
                 const linkUrl = new URL(href, window.location.origin);
 
-                // Check if the link's domain is different from the current domain
-                // This handles links starting with 'http' or 'https' to different sites.
                 if (linkUrl.hostname !== currentDomain) {
                     link.setAttribute('target', '_blank');
-                    link.setAttribute('rel', 'noopener noreferrer'); // Recommended security attributes
+                    link.setAttribute('rel', 'noopener noreferrer');
                 }
             } catch (e) {
-                // Catches errors for malformed URLs, treating them as external if they start with http/s
                 if (href.startsWith('http')) {
                     link.setAttribute('target', '_blank');
                     link.setAttribute('rel', 'noopener noreferrer');
@@ -200,5 +205,5 @@ function setExternalLinksTarget() {
     });
 }
 
-// Call the function once the DOM is ready (or just before the closing tag)
+// Call the function once to set targets on load
 setExternalLinksTarget();
