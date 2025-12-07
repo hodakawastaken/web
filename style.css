@@ -8,11 +8,10 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    /* FIX: Add scroll padding to account for the fixed navigation bar */
-    scroll-padding-top: 100px; 
+    scroll-padding-top: 100px;
 }
 
-/* Custom Glass Panel Class */
+/* Glass Cards */
 .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
@@ -23,21 +22,25 @@ body {
 }
 
 .glass-panel:hover {
-    border-color: rgba(162, 155, 254, 0.3); /* Purple tint on hover */
+    border-color: rgba(162, 155, 254, 0.3);
 }
 
-
-/* Scrollbar */
+/* BEAUTIFUL VIOLET SCROLLBAR */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 3px;
+    background: linear-gradient(180deg, #6c5ce7, #a29bfe);
+    border-radius: 10px;
+    transition: background 0.3s ease;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
+    background: #a29bfe;
 }
